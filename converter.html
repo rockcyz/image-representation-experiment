@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数值转换工具 - 计算思维概论</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="converter-styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">
+                    <div class="course-badge">
+                        <span class="course-title">计算思维</span>
+                        <span class="course-subtitle">Computational Thinking</span>
+                    </div>
+                    <i class="fas fa-calculator"></i>
+                    数值转换工具
+                </h1>
+                <p class="subtitle">支持十进制、二进制、十六进制转换及运算</p>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-tab="converter">
+                <i class="fas fa-exchange-alt"></i>
+                进制转换
+            </button>
+            <button class="nav-tab" data-tab="arithmetic">
+                <i class="fas fa-plus"></i>
+                算术运算
+            </button>
+            <button class="nav-tab" data-tab="logical">
+                <i class="fas fa-code"></i>
+                逻辑运算
+            </button>
+        </nav>
+
+        <!-- Converter Tab -->
+        <div class="tab-content active" id="converter">
+            <div class="converter-section">
+                <h2><i class="fas fa-exchange-alt"></i> 进制转换器</h2>
+                
+                <div class="converter-grid">
+                    <!-- Decimal Input -->
+                    <div class="converter-group">
+                        <label for="decimalInput">
+                            <i class="fas fa-10"></i>
+                            十进制 (Decimal)
+                        </label>
+                        <input type="text" id="decimalInput" placeholder="输入十进制数字" class="number-input">
+                        <div class="input-info">基数为10，使用数字0-9</div>
+                    </div>
+
+                    <!-- Binary Input -->
+                    <div class="converter-group">
+                        <label for="binaryInput">
+                            <i class="fas fa-2"></i>
+                            二进制 (Binary)
+                        </label>
+                        <input type="text" id="binaryInput" placeholder="输入二进制数字" class="number-input">
+                        <div class="input-info">基数为2，使用数字0-1</div>
+                    </div>
+
+                    <!-- Hexadecimal Input -->
+                    <div class="converter-group">
+                        <label for="hexInput">
+                            <i class="fas fa-16"></i>
+                            十六进制 (Hexadecimal)
+                        </label>
+                        <input type="text" id="hexInput" placeholder="输入十六进制数字" class="number-input">
+                        <div class="input-info">基数为16，使用数字0-9和字母A-F</div>
+                    </div>
+                </div>
+
+                <div class="converter-actions">
+                    <button class="btn btn-primary" id="convertBtn">
+                        <i class="fas fa-exchange-alt"></i>
+                        转换
+                    </button>
+                    <button class="btn btn-secondary" id="clearConverterBtn">
+                        <i class="fas fa-trash"></i>
+                        清空
+                    </button>
+                </div>
+
+                <div class="conversion-result" id="conversionResult">
+                    <h3><i class="fas fa-info-circle"></i> 转换结果</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <span class="result-label">十进制:</span>
+                            <span class="result-value" id="resultDecimal">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">二进制:</span>
+                            <span class="result-value" id="resultBinary">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">十六进制:</span>
+                            <span class="result-value" id="resultHex">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Arithmetic Tab -->
+        <div class="tab-content" id="arithmetic">
+            <div class="arithmetic-section">
+                <h2><i class="fas fa-plus"></i> 算术运算器</h2>
+                
+                <div class="arithmetic-grid">
+                    <!-- First Number -->
+                    <div class="arithmetic-group">
+                        <label for="arithmeticBase">选择进制:</label>
+                        <select id="arithmeticBase" class="base-select">
+                            <option value="10">十进制</option>
+                            <option value="2">二进制</option>
+                            <option value="16">十六进制</option>
+                        </select>
+                    </div>
+
+                    <div class="arithmetic-group">
+                        <label for="firstNumber">第一个数字:</label>
+                        <input type="text" id="firstNumber" placeholder="输入数字" class="number-input">
+                    </div>
+
+                    <div class="arithmetic-group">
+                        <label for="operator">运算符:</label>
+                        <select id="operator" class="operator-select">
+                            <option value="+">+ (加法)</option>
+                            <option value="-">- (减法)</option>
+                            <option value="*">× (乘法)</option>
+                            <option value="/">÷ (除法)</option>
+                        </select>
+                    </div>
+
+                    <div class="arithmetic-group">
+                        <label for="secondNumber">第二个数字:</label>
+                        <input type="text" id="secondNumber" placeholder="输入数字" class="number-input">
+                    </div>
+                </div>
+
+                <div class="arithmetic-actions">
+                    <button class="btn btn-primary" id="calculateBtn">
+                        <i class="fas fa-equals"></i>
+                        计算
+                    </button>
+                    <button class="btn btn-secondary" id="clearArithmeticBtn">
+                        <i class="fas fa-trash"></i>
+                        清空
+                    </button>
+                </div>
+
+                <div class="arithmetic-result" id="arithmeticResult">
+                    <h3><i class="fas fa-calculator"></i> 计算结果</h3>
+                    <div class="result-display">
+                        <div class="result-item">
+                            <span class="result-label">十进制结果:</span>
+                            <span class="result-value" id="resultDecimalArithmetic">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">二进制结果:</span>
+                            <span class="result-value" id="resultBinaryArithmetic">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">十六进制结果:</span>
+                            <span class="result-value" id="resultHexArithmetic">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logical Tab -->
+        <div class="tab-content" id="logical">
+            <div class="logical-section">
+                <h2><i class="fas fa-code"></i> 逻辑运算器</h2>
+                
+                <div class="logical-grid">
+                    <!-- First Binary Number -->
+                    <div class="logical-group">
+                        <label for="firstBinary">第一个二进制数:</label>
+                        <input type="text" id="firstBinary" placeholder="输入二进制数字" class="number-input">
+                        <div class="input-info">例如: 1010</div>
+                    </div>
+
+                    <div class="logical-group">
+                        <label for="logicalOperator">逻辑运算符:</label>
+                        <select id="logicalOperator" class="operator-select">
+                            <option value="AND">AND (&)</option>
+                            <option value="OR">OR (|)</option>
+                            <option value="XOR">XOR (^)</option>
+                            <option value="NOT">NOT (~)</option>
+                        </select>
+                    </div>
+
+                    <!-- Second Binary Number -->
+                    <div class="logical-group" id="secondBinaryGroup">
+                        <label for="secondBinary">第二个二进制数:</label>
+                        <input type="text" id="secondBinary" placeholder="输入二进制数字" class="number-input">
+                        <div class="input-info">例如: 1100</div>
+                    </div>
+                </div>
+
+                <div class="logical-actions">
+                    <button class="btn btn-primary" id="logicalCalculateBtn">
+                        <i class="fas fa-code"></i>
+                        计算
+                    </button>
+                    <button class="btn btn-secondary" id="clearLogicalBtn">
+                        <i class="fas fa-trash"></i>
+                        清空
+                    </button>
+                </div>
+
+                <div class="logical-result" id="logicalResult">
+                    <h3><i class="fas fa-code"></i> 逻辑运算结果</h3>
+                    <div class="result-display">
+                        <div class="result-item">
+                            <span class="result-label">二进制结果:</span>
+                            <span class="result-value" id="resultBinaryLogical">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">十进制结果:</span>
+                            <span class="result-value" id="resultDecimalLogical">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">十六进制结果:</span>
+                            <span class="result-value" id="resultHexLogical">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logical Operations Guide -->
+                <div class="logical-guide">
+                    <h3><i class="fas fa-lightbulb"></i> 逻辑运算说明</h3>
+                    <div class="guide-grid">
+                        <div class="guide-item">
+                            <strong>AND (&):</strong> 两个位都为1时结果为1，否则为0
+                        </div>
+                        <div class="guide-item">
+                            <strong>OR (|):</strong> 两个位中至少有一个为1时结果为1
+                        </div>
+                        <div class="guide-item">
+                            <strong>XOR (^):</strong> 两个位不同时结果为1，相同时为0
+                        </div>
+                        <div class="guide-item">
+                            <strong>NOT (~):</strong> 对每一位取反，1变0，0变1
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 CUC计算思维概论 - 数值转换工具</p>
+        </footer>
+    </div>
+
+    <script src="converter-script.js"></script>
+</body>
+</html>
