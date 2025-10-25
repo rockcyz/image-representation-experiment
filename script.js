@@ -222,8 +222,11 @@ function analyzeImageAtPosition(imageId, event) {
                 const intensity = Math.floor((normalizedX + normalizedY) * 127);
                 r = g = b = intensity;
             } else if (imageId === 'grayImage') {
-                // For grayscale image, use grayscale with some variation
-                const intensity = Math.floor(normalizedX * 255);
+                // For grayscale image, use grayscale with more realistic variation
+                // Create a more complex pattern that varies with both X and Y
+                const baseIntensity = Math.floor(normalizedX * 180 + normalizedY * 75);
+                const variation = Math.floor(Math.sin(normalizedX * Math.PI * 2) * 30 + Math.cos(normalizedY * Math.PI * 2) * 20);
+                const intensity = Math.max(0, Math.min(255, baseIntensity + variation));
                 r = g = b = intensity;
             } else if (imageId === 'rgbImage') {
                 // For RGB image, use color variation
