@@ -1,0 +1,24 @@
+# 忽略临时文件
+~$*
+*.tmp
+*.temp
+
+# 忽略大文件
+*.mp4
+*.wav
+*.mp3
+*.exe
+*.pdf
+*.pptx
+*.docx
+*.vsdx
+*.bmp
+
+# 忽略系统文件
+.DS_Store
+Thumbs.db
+
+# 保留需要的文件
+!image/bit.png
+!image/gray.png
+!image/RGB.png

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实验1-3: 图像在计算机中的表示</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">
+                    <i class="fas fa-image"></i>
+                    图像在计算机中的表示
+                </h1>
+                <p class="subtitle">探索数字图像的基本原理与编码方式</p>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-tab="part1">
+                <i class="fas fa-eye"></i>
+                第一部分：图像像素RGB编码查看
+            </button>
+            <button class="nav-tab" data-tab="part2">
+                <i class="fas fa-code"></i>
+                第二部分：十六进制数值串控制图像
+            </button>
+        </nav>
+
+        <!-- Part 1: RGB Pixel Analysis -->
+        <section id="part1" class="tab-content active">
+            <div class="section-header">
+                <h2><i class="fas fa-palette"></i> 图像像素RGB编码分析</h2>
+                <p>通过分析不同类型的图像，了解像素的RGB编码方式</p>
+            </div>
+
+            <div class="image-gallery">
+                <div class="image-card">
+                    <h3>黑白图像</h3>
+                    <div class="image-container">
+                        <div class="image-wrapper" id="bitImageWrapper">
+                            <img src="image/bit.png" alt="黑白图像" id="bitImage" class="zoomable-image">
+                            <div class="color-picker-overlay" id="bitImagePicker"></div>
+                        </div>
+                        <div class="image-controls">
+                            <button class="control-btn zoom-out" onclick="zoomImage('bitImage', -0.5)">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="zoom-level" id="bitImageZoom">100%</span>
+                            <button class="control-btn zoom-in" onclick="zoomImage('bitImage', 0.5)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="control-btn reset-zoom" onclick="resetZoom('bitImage')">
+                                <i class="fas fa-expand-arrows-alt"></i>
+                            </button>
+                            <button class="control-btn max-zoom" onclick="setMaxZoom('bitImage')" title="放大到5000%查看像素块">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="image-info">
+                        <p><strong>特点：</strong>只有黑白两种颜色，每个像素用1位表示</p>
+                        <p><strong>操作：</strong>点击图像任意位置查看像素RGB值，鼠标移动时实时显示RGB值</p>
+                        <p><strong>缩放：</strong>使用 +/- 按钮调整缩放，点击 🔍 按钮快速放大到5000%查看像素块</p>
+                        <p><strong>像素查看：</strong>高倍率缩放时使用像素完美渲染，确保像素边缘清晰</p>
+                        <p><strong>指针模式：</strong>低倍率显示十字指针用于取色，高倍率显示抓手指针用于拖拽</p>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>灰度图像</h3>
+                    <div class="image-container">
+                        <div class="image-wrapper" id="grayImageWrapper">
+                            <img src="image/gray.png" alt="灰度图像" id="grayImage" class="zoomable-image">
+                            <div class="color-picker-overlay" id="grayImagePicker"></div>
+                        </div>
+                        <div class="image-controls">
+                            <button class="control-btn zoom-out" onclick="zoomImage('grayImage', -0.5)">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="zoom-level" id="grayImageZoom">100%</span>
+                            <button class="control-btn zoom-in" onclick="zoomImage('grayImage', 0.5)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="control-btn reset-zoom" onclick="resetZoom('grayImage')">
+                                <i class="fas fa-expand-arrows-alt"></i>
+                            </button>
+                            <button class="control-btn max-zoom" onclick="setMaxZoom('grayImage')" title="放大到5000%查看像素块">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="image-info">
+                        <p><strong>特点：</strong>只有亮度信息，RGB值相等</p>
+                        <p><strong>操作：</strong>点击图像任意位置查看像素RGB值，鼠标移动时实时显示RGB值</p>
+                        <p><strong>缩放：</strong>使用 +/- 按钮调整缩放，点击 🔍 按钮快速放大到5000%查看像素块</p>
+                        <p><strong>像素查看：</strong>高倍率缩放时使用像素完美渲染，确保像素边缘清晰</p>
+                        <p><strong>指针模式：</strong>低倍率显示十字指针用于取色，高倍率显示抓手指针用于拖拽</p>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <h3>RGB彩色图像</h3>
+                    <div class="image-container">
+                        <div class="image-wrapper" id="rgbImageWrapper">
+                            <img src="image/RGB.png" alt="RGB彩色图像" id="rgbImage" class="zoomable-image">
+                            <div class="color-picker-overlay" id="rgbImagePicker"></div>
+                        </div>
+                        <div class="image-controls">
+                            <button class="control-btn zoom-out" onclick="zoomImage('rgbImage', -0.5)">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="zoom-level" id="rgbImageZoom">100%</span>
+                            <button class="control-btn zoom-in" onclick="zoomImage('rgbImage', 0.5)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="control-btn reset-zoom" onclick="resetZoom('rgbImage')">
+                                <i class="fas fa-expand-arrows-alt"></i>
+                            </button>
+                            <button class="control-btn max-zoom" onclick="setMaxZoom('rgbImage')" title="放大到5000%查看像素块">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="image-info">
+                        <p><strong>特点：</strong>包含红、绿、蓝三个颜色通道</p>
+                        <p><strong>操作：</strong>点击图像任意位置查看像素RGB值，鼠标移动时实时显示RGB值</p>
+                        <p><strong>缩放：</strong>使用 +/- 按钮调整缩放，点击 🔍 按钮快速放大到5000%查看像素块</p>
+                        <p><strong>像素查看：</strong>高倍率缩放时使用像素完美渲染，确保像素边缘清晰</p>
+                        <p><strong>指针模式：</strong>低倍率显示十字指针用于取色，高倍率显示抓手指针用于拖拽</p>
+                        <button onclick="testFloatingRgbDisplay()" style="background: #4CAF50; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-top: 10px; font-size: 12px;">测试浮动RGB显示</button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Part 2: Hexadecimal Image Generation -->
+        <section id="part2" class="tab-content">
+            <div class="section-header">
+                <h2><i class="fas fa-cogs"></i> 十六进制数值串控制图像生成</h2>
+                <p>使用十六进制数值串生成黑白图像，理解图像的数字化表示</p>
+            </div>
+
+            <div class="hex-generator">
+                <div class="input-section">
+                    <h3><i class="fas fa-edit"></i> 输入十六进制数值串</h3>
+                    <div class="input-group">
+                        <textarea id="hexInput" placeholder="输入十六进制数值串，例如：0000011111100000001111111111000000111111111110000001111111111000000111111111110000001111111111000000111111111110000001111111111000000111111111110000001111111111000000111111111110000001111111111000000111111111110000001111111111000000111111111110000001111111111000000000000000000000"></textarea>
+                        <div class="input-controls">
+                            <button class="btn btn-primary" onclick="generateImage()">
+                                <i class="fas fa-magic"></i> 生成图像
+                            </button>
+                            <button class="btn btn-secondary" onclick="loadExample()">
+                                <i class="fas fa-robot"></i> 加载示例（机器人）
+                            </button>
+                            <button class="btn btn-secondary" onclick="clearInput()">
+                                <i class="fas fa-trash"></i> 清空
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="output-section">
+                    <h3><i class="fas fa-image"></i> 生成结果</h3>
+                    <div class="image-output">
+                        <canvas id="generatedCanvas" width="256" height="256"></canvas>
+                        <div class="canvas-info">
+                            <p>图像尺寸: <span id="imageSize">16 x 16</span></p>
+                            <p>像素总数: <span id="pixelCount">256</span></p>
+                        </div>
+                    </div>
+                    <div class="download-section">
+                        <button class="btn btn-success" onclick="downloadImage()">
+                            <i class="fas fa-download"></i> 下载图像
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tutorial-section">
+                <h3><i class="fas fa-graduation-cap"></i> 实验说明</h3>
+                <div class="tutorial-content">
+                    <div class="tutorial-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>理解二进制表示</h4>
+                            <p>在十六进制数值串中，每个字符代表4位二进制数。例如：</p>
+                            <div class="code-example">
+                                <code>0 = 0000</code><br>
+                                <code>1 = 0001</code><br>
+                                <code>F = 1111</code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tutorial-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>图像生成规则</h4>
+                            <p>将十六进制字符串转换为二进制，然后按行排列：</p>
+                            <ul>
+                                <li>0 表示黑色像素</li>
+                                <li>1 表示白色像素</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tutorial-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>尝试创建自己的图像</h4>
+                            <p>设计一个16x16像素的图像，将设计转换为十六进制字符串输入到上方文本框中。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 计算思维概论 - 图像表示实验</p>
+        </footer>
+    </div>
+
+    <!-- Floating RGB Display -->
+    <div class="floating-rgb-display" id="floatingRgbDisplay">
+        <div class="rgb-line">
+            <span class="color-label red">R:</span>
+            <span class="color-value" id="floatingRedValue">-</span>
+            <span class="color-label green">G:</span>
+            <span class="color-value" id="floatingGreenValue">-</span>
+            <span class="color-label blue">B:</span>
+            <span class="color-value" id="floatingBlueValue">-</span>
+        </div>
+        <div class="rgb-line">
+            <span class="color-label hex">HEX:</span>
+            <span class="color-value" id="floatingHexValue">-</span>
+            <span class="color-preview" id="floatingColorPreview"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
