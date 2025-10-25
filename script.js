@@ -21,11 +21,6 @@ let pixelAnalysisThrottle = {};
 document.addEventListener('DOMContentLoaded', function() {
     console.log('页面加载完成，开始初始化...');
     
-    // Test floating RGB display
-    setTimeout(() => {
-        console.log('Testing floating RGB display...');
-        testFloatingRgbDisplay();
-    }, 1000);
     
     initializeTabs();
     initializeImageAnalysis();
@@ -33,29 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
     ensureImageQuality();
 });
 
-// Test floating RGB display
-function testFloatingRgbDisplay() {
-    console.log('Testing floating RGB display elements...');
-    
-    const elements = {
-        floatingDisplay: document.getElementById('floatingRgbDisplay'),
-        redValue: document.getElementById('floatingRedValue'),
-        greenValue: document.getElementById('floatingGreenValue'),
-        blueValue: document.getElementById('floatingBlueValue'),
-        hexValue: document.getElementById('floatingHexValue'),
-        colorPreview: document.getElementById('floatingColorPreview')
-    };
-    
-    console.log('Floating RGB elements found:', elements);
-    
-    if (elements.floatingDisplay) {
-        // Test with sample values
-        updateAnalysisPanel(255, 128, 64, '#FF8040');
-        console.log('Floating RGB display test completed');
-    } else {
-        console.error('Floating RGB display element not found!');
-    }
-}
 
 
 // Ensure images are loaded with original quality
@@ -805,7 +777,7 @@ function generateImage() {
         const dimension = Math.sqrt(totalPixels);
         
         if (!Number.isInteger(dimension)) {
-            alert('十六进制字符串长度必须是一个完全平方数！');
+            alert('十六进制字符串长度必须是一个完全平方数！（如4、9、16、25、36、49、64等），因为图像需要是正方形的。');
             return;
         }
         
@@ -885,7 +857,7 @@ function generateBinaryImage(binaryString, dimension) {
 
 function loadExample() {
     // Robot example from the original experiment
-    const robotHex = '0000011111100000001111111111000000111111111110000001111111111000000111111111110000001111111111000000111111111110000001111111111000000111111111110000001111111111000000111111111110000001111111111000000111111111110000001111111111000000111111111110000001111111111000000000000000000000';
+    const robotHex = '000000000ff010081248124810080ff0142814281ff808100bd0124822441e78';
     
     document.getElementById('hexInput').value = robotHex;
     generateImage();

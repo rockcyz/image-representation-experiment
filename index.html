@@ -14,6 +14,10 @@
         <header class="header">
             <div class="header-content">
                 <h1 class="title">
+                    <div class="course-badge">
+                        <span class="course-title">计算思维</span>
+                        <span class="course-subtitle">Computational Thinking</span>
+                    </div>
                     <i class="fas fa-image"></i>
                     图像在计算机中的表示
                 </h1>
@@ -134,7 +138,6 @@
                         <p><strong>缩放：</strong>使用 +/- 按钮调整缩放，点击 🔍 按钮快速放大到5000%查看像素块</p>
                         <p><strong>像素查看：</strong>高倍率缩放时使用像素完美渲染，确保像素边缘清晰</p>
                         <p><strong>指针模式：</strong>低倍率显示十字指针用于取色，高倍率显示抓手指针用于拖拽</p>
-                        <button onclick="testFloatingRgbDisplay()" style="background: #4CAF50; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-top: 10px; font-size: 12px;">测试浮动RGB显示</button>
                     </div>
                 </div>
             </div>
@@ -152,7 +155,7 @@
                 <div class="input-section">
                     <h3><i class="fas fa-edit"></i> 输入十六进制数值串</h3>
                     <div class="input-group">
-                        <textarea id="hexInput" placeholder="输入十六进制数值串，例如：0000011111100000001111111111000000111111111110000001111111111000000111111111110000001111111111000000111111111110000001111111111000000111111111110000001111111111000000111111111110000001111111111000000111111111110000001111111111000000111111111110000001111111111000000000000000000000"></textarea>
+                        <textarea id="hexInput" placeholder="输入十六进制数值串，例如：000000000ff010081248124810080ff0142814281ff808100bd0124822441e78"></textarea>
                         <div class="input-controls">
                             <button class="btn btn-primary" onclick="generateImage()">
                                 <i class="fas fa-magic"></i> 生成图像
@@ -193,9 +196,9 @@
                             <h4>理解二进制表示</h4>
                             <p>在十六进制数值串中，每个字符代表4位二进制数。例如：</p>
                             <div class="code-example">
-                                <code>0 = 0000</code><br>
-                                <code>1 = 0001</code><br>
-                                <code>F = 1111</code>
+                                <code>0 = 0000  ,  1 = 0001</code><br>
+                                <code>2 = 0011  ,  3 = 0011</code><br>
+                                <code>E = 1110  ,  F = 1111</code>
                             </div>
                         </div>
                     </div>
@@ -205,8 +208,8 @@
                             <h4>图像生成规则</h4>
                             <p>将十六进制字符串转换为二进制，然后按行排列：</p>
                             <ul>
-                                <li>0 表示黑色像素</li>
-                                <li>1 表示白色像素</li>
+                                <li>1 表示黑色像素</li>
+                                <li>0 表示白色像素</li>
                             </ul>
                         </div>
                     </div>
@@ -223,7 +226,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p>&copy; 2024 计算思维概论 - 图像表示实验</p>
+            <p>&copy; 2025 CUC计算思维概论 - 图像表示实验</p>
         </footer>
     </div>
 
